@@ -47,7 +47,7 @@ Notably you can provide additional model paths, or customize the database logger
 
 ## General architecture overview
 
-![Architecture overview](ADD_LINK)
+![Architecture overview](https://raw.githubusercontent.com/hihuz/node-service-generator/main/src/common/generator/assets/generated_service_anonymized.png)
 
 ### data-provider
 
