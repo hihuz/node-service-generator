@@ -1,0 +1,1 @@
+export { CurrencyDataProvider } from "./dataprovider";
