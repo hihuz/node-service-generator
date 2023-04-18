@@ -1,0 +1,65 @@
+{
+  "name": "service-generator",
+  "version": "0.0.1",
+  "description": "Node service generator",
+  "main": "index.js",
+  "author": "Sylvain Boulade",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hihuz/node-service-generator.git"
+  },
+  "files": [
+    "build/src/**/*.js",
+    "build/src/**/*.d.ts",
+    "build/tests/*/e2e/**/*.js"
+  ],
+  "scripts": {
+    "build-src": "./bin/npm/build-src.sh",
+    "build-tests": "./bin/npm/build-tests.sh",
+    "build-all": "./bin/npm/build-src.sh && ./bin/npm/build-tests.sh && ./bin/npm/build-docs.sh",
+    "prepare-tests": "./bin/npm/prepare-tests.sh",
+    "run-unit-tests": "./bin/npm/run-unit-tests.sh",
+    "test": "npm run prepare-tests && npm run lint && npm run run-unit-tests ",
+    "lint": "eslint \"src/**/*.ts\" \"tests/**/*.ts\"",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "koa-router": "^12.0.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.3",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.2",
+    "sequelize-typescript": "^2.1.3",
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.0",
+    "@types/koa-router": "^7.4.4",
+    "@types/lodash": "^4.14.182",
+    "@types/mocha": "^9.1.1",
+    "@types/sinon": "^10.0.12",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "chai": "^4.3.6",
+    "eslint": "^8.15.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "mocha": "^10.0.0",
+    "nock": "^13.2.7",
+    "nodemon": "^2.0.18",
+    "nyc": "^15.1.0",
+    "prettier": "^2.6.0",
+    "sinon": "^14.0.0",
+    "supertest": "^6.2.3"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix"
+    ],
+    "*.js": "eslint --cache --fix"
+  }
+}
