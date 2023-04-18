@@ -47,7 +47,7 @@ Notably you can provide additional model paths, or customize the database logger
 
 ## General architecture overview
 
-![Architecture overview](ADD_LINK)
+![Architecture overview](https://raw.githubusercontent.com/hihuz/node-service-generator/main/src/common/generator/assets/generated_service_anonymized.png)
 
 ### data-provider
 
@@ -72,7 +72,7 @@ When creating a new endpoint for a service, you will typically extend the base S
 -   A permissions manager (see: [permissions-manager](#permissions-manager))
 -   A sequelize repository (see: [sequelize-repository](#sequelize-repository))
 -   A serializer (see: [serializer](#serializer))
--   An input validator (see: [input-validator](#input-validator))
+-   An input validator (see: [validator](#validator))
 
 Example:
 
@@ -340,9 +340,9 @@ public async deserialize(product: Partial<IProduct>): Promise<Partial<ICreatePro
 }
 ```
 
-### input-validator
+### validator
 
-The input-validator is the class performing input validation that cannot be performed directly by the swagger spec. Most notably this should be used for business logic validation requirements.
+The validator is the class performing input validation that cannot be performed directly by the swagger spec. Most notably this should be used for business logic validation requirements.
 
 It interacts with the data-provider which calls the different validation methods before attempting to perform write operations.
 
@@ -352,7 +352,7 @@ It features three distinct validation tasks:
 -   validateImmutableFields: this method is called only for UPDATE operations, and will validate that all fields provided as `immutablePaths` static property remain the same in the input as in the record that is being updated.
 -   validateInput: this method is called for CREATE and UPDATE operations, and does not perform anything by default. It is there to be overridden so that arbitrary validation rules can be implemented.
 
-An input-validator for a given entity would be created like so:
+An validator for a given entity would be created like so:
 
 ```typescript
 export class MyEntityInputValidator extends InputValidator<MyEntity, MyEntityInputDto> {
