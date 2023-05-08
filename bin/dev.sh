@@ -4,6 +4,7 @@ set -e
 
 BASEDIR=$(dirname "$0")
 
+npm run build-src
 npm run create-db
 npm run generate-fixtures
 
