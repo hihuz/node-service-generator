@@ -1,5 +1,13 @@
 # Node service generator
 
+This repository is an anonymized version of an internal node / Koa framework created for a client to automate the creation of micro services.
+
+To run examples locally,
+* Create db env file: `cp src/examples/env/db.env.example src/examples/env/db.env`
+* Create service env file: `cp src/examples/env/service.env.example src/examples/env/service.env`
+* Install dependencies: `npm ci`
+* Start the containers: `docker-compose up`
+
 ## Introduction
 
 The files in this directory provide a system of base classes used to bootstrap a node micro-service directly interacting with our main database.

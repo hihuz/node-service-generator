@@ -17,7 +17,7 @@ describe("Serializer", () => {
   }
 
   before(() => {
-    new Sequelize({ models: [SourceModel], dialect: "mysql" });
+    new Sequelize({ models: [SourceModel], dialect: "postgres" });
     serializer = new (class extends Serializer<SourceModel> {})();
   });
 

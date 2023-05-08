@@ -1,5 +1,5 @@
-import * as Router from "koa-router";
-import * as _ from "lodash";
+import Router from "koa-router";
+import _ from "lodash";
 
 import {
   ICreateItemDataProvider,
@@ -155,23 +155,10 @@ export abstract class CrudController<T extends Record<string, any>> {
   }
 
   /**
-   * Extend this method to adjust input (e.g. if we do not want to support deprecated properties)
-   *
-   * @param entity
-   */
-  protected async transformInput(
-    entity: Partial<T>,
-    _state: AuthContextMetadata
-  ): Promise<any> {
-    return entity;
-  }
-
-  /**
    * Return a list of model entities.
    *
    * @param dataProvider
    * @param ctx
-   * @returns {Promise<{}>}
    */
   protected async getList(
     dataProvider: IGetListDataProvider<T>,
@@ -193,7 +180,6 @@ export abstract class CrudController<T extends Record<string, any>> {
    *
    * @param dataProvider
    * @param ctx
-   * @returns {Promise<{}>}
    */
   protected async getItem(
     dataProvider: IGetItemDataProvider<T>,
@@ -212,17 +198,13 @@ export abstract class CrudController<T extends Record<string, any>> {
    *
    * @param dataProvider
    * @param ctx
-   * @returns {Promise<{}>}
    */
   protected async createItem(
     dataProvider: ICreateItemDataProvider<T>,
     ctx: Router.IRouterContext
   ): Promise<T> {
     const state: AuthContextMetadata = ctx.state.auth;
-    const body: T = await this.transformInput(
-      _.get(ctx, "request.body", {}),
-      state
-    );
+    const body = _.get(ctx, "request.body", {}) as T;
 
     if (ctx.response) {
       ctx.response.status = 201;
@@ -239,7 +221,6 @@ export abstract class CrudController<T extends Record<string, any>> {
    * @param dataProvider
    * @param ctx
    * @param isPartial
-   * @returns {Promise<{}>}
    */
   protected async updateItem(
     dataProvider: IUpdateItemDataProvider<T>,
@@ -248,10 +229,7 @@ export abstract class CrudController<T extends Record<string, any>> {
   ): Promise<T> {
     const state: AuthContextMetadata = ctx.state.auth;
     const id: number = parseInt(ctx.params.id, 10);
-    const body: T = await this.transformInput(
-      _.get(ctx, "request.body", {}),
-      state
-    );
+    const body = _.get(ctx, "request.body", {}) as T;
 
     const entity = await dataProvider.updateItem(state, id, body, isPartial);
 
@@ -263,7 +241,6 @@ export abstract class CrudController<T extends Record<string, any>> {
    *
    * @param dataProvider
    * @param ctx
-   * @returns {Promise<{}>}
    */
   protected async deleteItem(
     dataProvider: IDeleteItemDataProvider<T>,

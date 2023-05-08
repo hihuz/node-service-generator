@@ -1,5 +1,5 @@
-import * as _ from "lodash";
-import * as sinon from "sinon";
+import _ from "lodash";
+import sinon from "sinon";
 
 import { ApplicationError } from "../../../../src/common/errors/application-error.class";
 import { Sequelize } from "sequelize-typescript";
@@ -49,7 +49,7 @@ describe("SequelizeConnection", () => {
         username: "user",
         password: "password",
         host: "host",
-        port: "3306",
+        port: "5432",
       });
     });
 

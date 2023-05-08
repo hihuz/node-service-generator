@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import _ from "lodash";
 
 import {
   Association,
@@ -93,9 +93,9 @@ export abstract class SequelizeRepository<
     // Sequelize "group" option syntax is using literal (i.e. db) field names.
     // If the primary key of a model is aliased, 'primaryKeyAttribute' can't be used in such group option.
     // The db field name of a model is stored in 'primaryKeyField' property which isn't exposed in the sequelize type.
-    const primaryKeyField = (
-      this.model as ModelCtor<T> & { primaryKeyField: string }
-    ).primaryKeyField;
+    // const primaryKeyField = (
+    //   this.model as ModelCtor<T> & { primaryKeyField: string }
+    // ).primaryKeyField;
 
     // 1. Get primary keys of entries matching the condition, limit, and order.
     const { rows: matchingItems, count } = await this.model.findAndCountAll({
@@ -103,7 +103,6 @@ export abstract class SequelizeRepository<
       ...order,
       limit,
       offset,
-      group: `${this.model.name}.${primaryKeyField}`,
     });
 
     const { primaryKeyAttribute } = this.model;

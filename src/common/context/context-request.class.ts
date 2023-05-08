@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import _ from "lodash";
 
 import { Config } from "../config/config";
 import { getAndValidatePageSize } from "./utils/context-utils";

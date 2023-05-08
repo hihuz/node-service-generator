@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import _ from "lodash";
 import { ClientError } from "../../errors/client-error.config";
 import { Config } from "../../config/config";
 import { ApplicationError } from "../../errors/application-error.class";

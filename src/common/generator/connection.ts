@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import _ from "lodash";
 
 import { Sequelize, SequelizeOptions } from "sequelize-typescript";
 
@@ -53,9 +53,9 @@ export class SequelizeConnection {
     }
 
     this.instance = new Sequelize(
-      `mysql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${
+      `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${
         process.env.DB_HOST
-      }:${process.env.DB_PORT || 3306}/${process.env.DB_SCHEMA}`,
+      }:${process.env.DB_PORT || 5432}/${process.env.DB_SCHEMA}`,
       {
         models: [__dirname + "./models"],
         logging: process.env.DB_LOGGING === "true" ? console.log : false,
