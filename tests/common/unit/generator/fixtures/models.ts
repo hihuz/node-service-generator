@@ -155,7 +155,7 @@ const createSequelizeInstance = (): Sequelize => {
         Info,
         Status,
       ],
-      dialect: "mysql",
+      dialect: "postgres",
     });
   } catch {
     sequelize = SequelizeConnection.getInstance();

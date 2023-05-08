@@ -1,4 +1,4 @@
-import * as sinon from "sinon";
+import sinon from "sinon";
 
 import { ApplicationError } from "../../../../src/common/errors/application-error.class";
 import { AuthContextMetadata } from "../../../../src/common/context/auth-context-metadata.class";

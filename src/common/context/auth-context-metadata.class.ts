@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import _ from "lodash";
 
 export class AuthContextMetadata<
   T extends Record<string, any> = Record<string, any>

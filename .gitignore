@@ -6,3 +6,5 @@ npm-debug.log
 /coverage
 .nyc_output
 .husky
+src/examples/env/db.env
+src/examples/env/service.env

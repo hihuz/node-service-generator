@@ -14,7 +14,8 @@
         "noUnusedLocals": true,
         "noUnusedParameters": false,
         "declaration": true,
-        "baseUrl": "."
+        "baseUrl": ".",
+        "esModuleInterop": true
     },
     "compileOnSave": false
 }

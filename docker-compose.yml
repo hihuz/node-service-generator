@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  generated-service-dev:
+    container_name: generated-service-dev
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    env_file: ./src/examples/env/service.env
+    depends_on:
+      - generated-service-db
+    ports:
+      - 9001:3001
+    volumes:
+      - ./:/opt/service
+  generated-service-db:
+    container_name: generated-service-db
+    image: postgres:15.2-alpine
+    restart: always
+    env_file: ./src/examples/env/db.env
+    ports:
+      - 5434:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+    driver: local
