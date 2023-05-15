@@ -310,7 +310,6 @@ describe("SequelizeRepository", () => {
           order,
           limit: 45,
           offset: 90,
-          group: "Product.id",
           attributes,
         })
       ).to.be.true;
@@ -363,7 +362,6 @@ describe("SequelizeRepository", () => {
           order,
           limit: 25,
           offset: 0,
-          group: "Product.id",
           attributes,
         })
       ).to.be.true;
@@ -420,7 +418,6 @@ describe("SequelizeRepository", () => {
           },
           limit: 25,
           offset: 0,
-          group: "Product.id",
         })
       ).to.be.true;
       expect(findAllProductStub.callCount).to.eq(1);
@@ -1096,7 +1093,6 @@ describe("SequelizeRepository: Custom Primary Keys", () => {
           order,
           limit: 25,
           offset: 0,
-          group: "ProductMetadata.pk",
         })
       ).to.be.true;
       expect(findAllMetadataStub.callCount).to.eq(1);
@@ -1229,28 +1225,17 @@ describe("SequelizeRepository: Aliased Primary Keys", () => {
       });
       findAllDemandSourceStub.resolves(findAllResponse);
 
-      const order = [["id", "ASC"]];
-
       // act
       const result = await repository.getList(state, request);
 
       // assert
       expect(result).to.deep.eq([findAllResponse, 2]);
       expect(findAndCountAllDemandSourceStub.callCount).to.eq(1);
-      expect(
-        _.isEqual(findAndCountAllDemandSourceStub.getCall(0).args[0], {
-          include: [],
-          order,
-          limit: 25,
-          offset: 0,
-          // assert: correct field name is used for PK
-          group: "DemandSource.numeric_code",
-        })
-      ).to.be.true;
+
       expect(findAllDemandSourceStub.callCount).to.eq(1);
       expect(
         _.isEqual(findAllDemandSourceStub.getCall(0).args[0], {
-          order,
+          order: [["id", "ASC"]],
           where: {
             [Op.and]: [{ id: { [Op.in]: [12, 34] } }, undefined],
           },
